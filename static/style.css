@@ -9,3 +9,8 @@
     color: greenyellow;
     text-align: center;
 }
+.footer-style {
+    position:absolute;
+    bottom: 0;
+    color: greenyellow;
+}
