@@ -1,18 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
-    <link rel="stylesheet" href="./static/style.css">
-</head>
-<body class="body-style">
-    <h1 class="h1-heading">Hello Kumar!</h1>
-    <h2 class="h2-heading">Random number generated is {{random_number}}</h2>
-</body>
+{% extends 'base.html' %}
 
-<footer>
-    <p class="footer-style">Copyright {{year}}</p>
-</footer>
+{% block title %}My Top 10 Movies{% endblock %}
 
-</html>
+{% block content %}
+<div class="container">
+  <h1 class="heading">My Top 10 Movies</h1>
+  <p class="description">These are my all-time favourite movies.</p>
+  {% for movie in movies: %}
+  <div class="card" >
+    <div class="front" style="background-image: url('{{movie.img_url}}')">
+        <p class="large">{{movie.id}}</p>
+    </div>
+    <div class="back">
+      <div>
+    <div class="title">{{movie.title}} <span class="release_date">{{movie.year}}</span></div>
+        <div class="rating">
+            <label>{{movie.rating}}</label>
+          <i class="fas fa-star star"></i>
+        </div>
+          <p class="review">{{movie.review}}</p>
+        <p class="overview">
+            {{movie.description}}        </p>
+
+        <a href="{{url_for('edit', id=movie.id)}}" class="button">Update</a>
+        <a href="#" class="button delete-button">Delete</a>
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+<div class="container text-center add">
+<a href="#" class="button">Add Movie</a>
+</div>
+
+{% endblock %}
